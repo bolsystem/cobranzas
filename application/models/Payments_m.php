@@ -21,8 +21,9 @@ class Payments_m extends CI_Model {
     $this->db->from('customers c');
     $this->db->join('loans l', 'l.customer_id = c.id', 'left');
     $this->db->join('coins co', 'co.id = l.coin_id', 'left');
-    $this->db->where(['c.loan_status' => 1, 'c.dni' => $dni]);
-
+    $this->db->where(['c.loan_status' => 1, 'l.status' => 1, 'c.dni' => $dni]);
+    //$this->db->where(['c.loan_status' => 1, 'c.dni' => $dni]);
+   
     return $this->db->get()->row(); 
   }
 
